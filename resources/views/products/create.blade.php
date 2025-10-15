@@ -1,4 +1,5 @@
 <div>
+    @include('modules.status')
     <div class="hidden" id="cproduct-form">
         <form method="post" action="/products/create">
             @csrf
