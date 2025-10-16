@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\ProductService;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -20,26 +21,19 @@ class ProductController extends Controller
         
         $response = $this->productService->createProduct($validated['pname'], $validated['pprice'], $validated['pquantity']);
 
-        if($response->error) {
-            return redirect('/')->with('error', $response);
-        }
-        return redirect('/')->with('success', $response);
+        return redirect('/')->with($response->status->value, $response);
     }
     
     public function show_create(): View {
         return view("products.create");
     }
 
-    public function buy_product(StoreProductRequest $request) {
+    public function buy_product(UpdateProductRequest $request) {
         $validated = $request->validated();
         
         $response = $this->productService->buyOrDecreseQuantityOfProduct($validated['operation'], $validated['pname'], $validated['pquantity']);
-
-        if($response->error) {
-            return redirect('/products/buy')->with('error', $response);
-        }
         
-        return redirect('/products/buy')->with('success', $response);
+        return redirect('/products/buy')->with($response->status->value, $response);
     }
 
     public function show_buyform_product(): View {
@@ -55,7 +49,7 @@ class ProductController extends Controller
     public function show_index(): View {
         $products = $this->productService->fetchAllProducts();
         
-        return view("products.index", ['products' => $products]);
+        return view('products.index', ['products' => $products]);
     }
 
     public function show_overview(): View {

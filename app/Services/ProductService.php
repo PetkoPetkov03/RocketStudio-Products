@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Product;
 use App\Utils\ResponseBody;
 use App\Utils\ProductStockOverview;
+use App\Utils\ResponseType;
 
 class ProductService {
     public function fetchAllProducts() {
@@ -30,15 +31,15 @@ class ProductService {
             ]);
 
             if(!$result) {
-                return new ResponseBody(true, errorMessage: 'Service was unable to find or create product');
+                return new ResponseBody(errorMessage: 'Service was unable to find or create product');
             }
 
             $message = 'Successfully created product ' . $p_name;
-            return new ResponseBody(false, successMessage: $message);
+            return new ResponseBody(ResponseType::SUCCESS, successMessage: $message);
             
         }catch(\Exception $e) {
             \Log::error('Product creation failed!' . $e->getMessage());
-            return new ResponseBody(true, errorMessage: $e->getMessage());
+            return new ResponseBody(errorMessage: $e->getMessage());
         }
     }
 
@@ -47,22 +48,22 @@ class ProductService {
             $product = $this->findProductByName($p_name);
 
             if(!$product) {
-                return new ResponseBody(true, errorMessage: 'Product dosen\'t exist');
+                return new ResponseBody(errorMessage: 'Product dosen\'t exist');
             }
 
             if($product->quantity < $quantity) {
-                return new ResponseBody(true, errorMessage: 'There is not enough stock');
+                return new ResponseBody(errorMessage: 'There is not enough stock');
             }
             
             $product->quantity -= $quantity;
 
             $product->save();
 
-            return new ResponseBody(false, successMessage: $operation . ' successfull');
+            return new ResponseBody(ResponseType::SUCCESS, successMessage: $operation . ' successfull');
             
         }catch(\Exception $e) {
             \Log::error('Product quantity change failed! ' . $e->getMessage());
-            return new ResponseBody(true, errorMessage: $e->getMessage());
+            return new ResponseBody(errorMessage: $e->getMessage());
         }
     }
 
@@ -72,11 +73,11 @@ class ProductService {
 
             $overview = new ProductStockOverview($products);
 
-            return new ResponseBody(false, responseBody: $overview);
+            return new ResponseBody(ResponseType::SUCCESS, responseBody: $overview);
             
         }catch(\Exception $e) {
             \Log::error('Stock Page generation failed! ' . $e->getMessage());
-            return new ResponseBody(true, errorMessage: $e->getMessage());
+            return new ResponseBody(errorMessage: $e->getMessage());
         }
     }
 }
