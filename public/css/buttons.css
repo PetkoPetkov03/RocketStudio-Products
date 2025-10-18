@@ -1,0 +1,32 @@
+.button {
+    
+    background-color: #2563eb;
+    border-color: #dedede;
+    color: #ffffff;
+
+    padding: 3px;
+    border-radius: 12px;
+    box-shadow: 3px 2px 1px  #dedede;
+}
+
+.button:hover {
+    transform: scale(1.03);
+}
+
+.button:active {
+    background-color: #e5e7eb;
+    color: black;
+    transform: scale(0.9);
+    box-shadow: none;
+}
+
+.secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.secondary:active {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+

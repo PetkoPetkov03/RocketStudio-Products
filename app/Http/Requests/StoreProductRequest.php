@@ -24,8 +24,8 @@ class StoreProductRequest extends FormRequest
         return [
             //
             'pname'=>'required|string|max:255',
-            'pprice'=>'required|numeric',
-            'pquantity'=>'required|integer',
+            'pprice'=>'required|numeric|min:0.01',
+            'pquantity'=>'required|integer|min:1',
         ];
     }
 }
