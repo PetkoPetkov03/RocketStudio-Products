@@ -24,7 +24,7 @@
                     <input class="validate" type="number" name="pprice" placeholder="price"/>
                     <input class="validate" type="number" name="pquantity" placeholder="quantity" />
                 </div>
-                <button class="button" type="submit">Create Product!</button>
+                <button id="form" class="button" type="submit">Create Product!</button>
             </form>
         </div>
         @include('modules.feedback')

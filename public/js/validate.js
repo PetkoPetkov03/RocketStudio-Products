@@ -1,5 +1,3 @@
-let feedbackState = false;
-
 const rules = {
     "empty": "input shouldn't be empty",
     "type": "input is the wrong type",
@@ -48,8 +46,11 @@ function checkRules(inputs) {
 window.addEventListener("DOMContentLoaded", () => {
     const inputs = Array.from(document.getElementsByClassName('validate'));
     const feedback = document.getElementById("feedback");
-
+    const form = document.getElementById("form");
+    let feedbackState = true;
     feedback.hidden = feedbackState;
+
+    form.disabled = feedbackState
 
     const rule_sets = checkRules(inputs);
 
@@ -64,12 +65,16 @@ window.addEventListener("DOMContentLoaded", () => {
             });
 
             if (allMessages.length > 0) {
-                feedback.hidden = false;
+                feedbackState = true;
+                feedback.hidden = feedbackState;
                 feedback.innerHTML = "<ul>" + allMessages.map(msg => `<li>${msg}</li>`).join("") + "</ul>";
             } else {
-                feedback.hidden = true;
+                feedbackState = false;
+                feedback.hidden = feedbackState;
                 feedback.innerHTML = "";
             }
+
+            form.disabled = feedbackState;
         });
     });
 });

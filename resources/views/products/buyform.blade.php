@@ -27,7 +27,7 @@
                         <option value="lower">Decrese Quantity</option>
                     </select>
                 </div>
-                <button class="button">Finish Operation</button>
+                <button id="form" class="button">Finish Operation</button>
             </form>
         </div>
         @include('modules.feedback')
