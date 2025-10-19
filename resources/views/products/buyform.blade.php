@@ -15,7 +15,7 @@
         <button style="width: 20%;margin-bottom: 10px;" class="button secondary" onclick='history.back()'>Back</button>
         <div class="form-container">
             <h1>Buy Product</h1>
-            <form class="form" method='POST' action='/products/buy'>
+            <form class="form" method='POST' action='{{ route("products.buy.action") }}'>
                 @csrf
                 <div class="input-field">
                     <input class="validate" type="text" name='pname' placeholder='Product name' required />

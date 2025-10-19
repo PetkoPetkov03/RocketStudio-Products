@@ -40,8 +40,9 @@ class ProductController extends Controller
         return view('products.buyform');
     }
     
-    public function display_product(Request $request, int $id) {
-        $product = $this->productService->getProductById($id);
+    public function display_product(Request $request, string $id) {
+        $idparsed = intval($id);
+        $product = $this->productService->getProductById($idparsed);
         
         return view('products.display', ['product' => $product]);
     }

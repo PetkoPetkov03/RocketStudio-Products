@@ -16,7 +16,7 @@
         <button style="width: 20%;margin-bottom: 10px;" class="button secondary" onclick='history.back()'>Back</button>
         <div class="form-container" id="cproduct-form">
             <h1>Create Product</h1>
-            <form class="form" method="post" action="/products/create">
+            <form class="form" method="post" action="{{ route("products.create.action") }}">
                 @csrf
 
                 <div class='input-field'>

@@ -66,11 +66,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
             if (allMessages.length > 0) {
                 feedbackState = true;
-                feedback.hidden = feedbackState;
+                feedback.hidden = !feedbackState;
                 feedback.innerHTML = "<ul>" + allMessages.map(msg => `<li>${msg}</li>`).join("") + "</ul>";
             } else {
                 feedbackState = false;
-                feedback.hidden = feedbackState;
+                feedback.hidden = !feedbackState;
                 feedback.innerHTML = "";
             }
 

@@ -1,0 +1,50 @@
+.show-card {
+  width: 40vw;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  border: 1px solid #dedede;
+  box-shadow: 3px 4px 10px 1px #dedede;
+  border-radius: 8px;
+  background: #fff;
+}
+
+
+.card-title {
+  grid-column: 1 / 4;
+  grid-row: 1;
+  text-align: center;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+}
+
+.card-title h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.price {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  align-self: end;
+  font-size: 1rem;
+}
+
+.quantity {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
+  text-align: right;
+  font-size: 1rem;
+}
+
+.show-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 5px 6px 15px 2px #d0d0d0;
+  transition: 0.2s ease;
+}
